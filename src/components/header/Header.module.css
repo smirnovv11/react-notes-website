@@ -1,0 +1,14 @@
+.container {
+    background-color: black;
+    position: static;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 0px;
+}
+
+h1 {
+    text-align: center;
+    color: #FFF;
+    font-weight: 500;
+}
