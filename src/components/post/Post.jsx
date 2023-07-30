@@ -4,7 +4,7 @@ const Post = ({post}) => {
     return (
         <div className={styles.post}>
             <div className={styles.info}>
-                <img src={post.img}></img>
+                <img src={post.img} alt='/no-image.png'></img>
                 <div className={styles.content}>
                     <label>#{post.id} <b>{post.title}</b></label>
                     <p>{post.content}</p>

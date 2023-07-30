@@ -1,7 +1,7 @@
 import styles from "./PostEditPanel.module.css"
-import { PostManager } from "../../services/postManages"
 import { useState } from "react"
 import { ImageUploader } from "../../services/imageService"
+import { usePosts } from "../postsContext/PostContext"
 
 const clearPost = {
     id: 0,
@@ -10,25 +10,25 @@ const clearPost = {
     img: '',
 }
 
-const PostEditPanel = ({onNewPost}) => {
+const PostEditPanel = () => {
 
     const [post, setPost] = useState(() => clearPost);
     const [isNotifAnim, setNotification] = useState(false);
+
+    const posts = usePosts();
 
     const makeNewPost = () => {
         if (post.title != '' &&
             post.content != '' &&
             post.img != '') {
-                
+                post.id = posts.getFreeId();
+                posts.addPost(post);
+                setPost(clearPost);
+                notifyUser();
             }
-        post.id = PostManager.getFreeId();
-        PostManager.addPost(post);
-        onNewPost();
-        setPost(clearPost);
-        notify();
     }
 
-    async function notify () {
+    async function notifyUser () {
          setNotification(true);
          setTimeout(() => setNotification(false), 4000);
     }

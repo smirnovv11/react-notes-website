@@ -5,18 +5,23 @@ export const PostManager = {
         
     },
     getAll() {
+        console.log('obtained from server')
         return data;
     },
     getFreeId() {
         return data.length + 1;
     },
-    addPost(post) {
+    async addPost(post) {
         data.unshift(post);
         this.savaData();
+        console.log('updated on server')
     },
-    removePost(post) {
-        data.pop(post);
-        this.savaData();
-    }
-
+    async removePost(post) {
+        const index = data.findIndex((p) => p.id === post.id);
+        if (index !== -1) {
+          data.splice(index, 1);
+          this.saveData();
+        }
+        console.log('updated on server')
+      }
 }
